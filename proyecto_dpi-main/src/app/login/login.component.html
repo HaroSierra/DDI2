@@ -1,0 +1,20 @@
+<div class="container">
+  <div class="login-container">
+    <h2>Login</h2>
+    <div *ngIf="errorMessage" class="error-message">{{ errorMessage }}</div>
+    
+    <form class="example-form" [formGroup]="formGroup">
+      <mat-form-field class="example-full-width">
+        <mat-label>Username</mat-label>
+        <input matInput type="text" id="username" name="username" formControlName="username" required>
+      </mat-form-field>
+
+      <mat-form-field class="example-full-width">
+        <mat-label>Contraseña</mat-label>
+        <input matInput type="password" id="password" name="password" formControlName="password" required>
+      </mat-form-field>
+      <button type="submit" (click)="onSubmit()">Iniciar sesión</button>
+    </form>
+  </div>
+
+</div>

@@ -1,0 +1,28 @@
+<mat-form-field>
+  <mat-label>Buscar</mat-label>
+  <input matInput (keyup)="applyFilter($event)" placeholder="Producto" #input>
+</mat-form-field>
+<button mat-fab (click)="openDialog()"><mat-icon>add</mat-icon></button>
+
+<div class="cards-container" *ngIf="productList?.data?.length; else noData">
+  <div class="card" *ngFor="let product of productList.filteredData">
+    <div class="card-header">
+      <h3>{{ product.name }}</h3>
+      <span class="status">{{ product.status }}</span>
+    </div>
+    <div class="card-body">
+      <p class="precio">{{ product.price | currency }}</p>
+      <p><strong>Fecha de Creación:</strong> {{ product.creationDate | date }}</p>
+      <p><strong>Cantidad:</strong> {{ product.amount }}</p>
+    </div>
+    <div class="card-acciones">
+      <button mat-icon-button (click)="editDialog(product)"><mat-icon>edit</mat-icon></button>
+      <button mat-icon-button (click)="deleteDialog(product)"><mat-icon>delete</mat-icon></button>
+      <button mat-button (click)="agregarAlCarrito(product)">Agregar al carrito</button>
+    </div>
+  </div>
+</div>
+
+<ng-template #noData>
+  <p>No hay información "{{input.value}}"</p>
+</ng-template>

@@ -1,0 +1,51 @@
+<h2 mat-dialog-title *ngIf="!data">Agregar producto</h2>
+<h2 mat-dialog-title *ngIf="data && !data.eliminar">Editar producto</h2>
+<h2 mat-dialog-title *ngIf="data?.eliminar">Eliminar producto</h2>
+
+<mat-dialog-content *ngIf="!data?.eliminar">
+    <form [formGroup]="formGroup">
+        <mat-form-field class="product_input">
+            <mat-label>NOMBRE</mat-label>
+            <input matInput formControlName="name" required="true">
+        </mat-form-field>
+
+        <mat-form-field class="product_input">
+            <mat-label>CODIGO</mat-label>
+            <input matInput formControlName="code" required="true">
+        </mat-form-field>
+
+        <mat-form-field class="product_input">
+            <mat-label>CATEGORIA</mat-label>
+            <input matInput formControlName="category" required="true">
+        </mat-form-field>
+
+        <mat-form-field class="product_input">
+            <mat-label>PRECIO</mat-label>
+            <span matTextPrefix>$ &nbsp;</span>
+            <input matInput formControlName="price" required="true">
+        </mat-form-field>
+
+        <mat-form-field class="product_input">
+            <mat-label>DESCRIPCION</mat-label>
+            <input matInput formControlName="description" required="true">
+        </mat-form-field>
+
+        <mat-form-field class="product_input">
+            <mat-label>CANTIDAD</mat-label>
+            <input matInput formControlName="amount" type="number" required="true">
+        </mat-form-field>
+
+    </form>
+</mat-dialog-content>
+
+<mat-dialog-actions *ngIf="!data?.eliminar">
+    <button mat-raised-button (click)="save()">Guardar</button>
+    <button mat-raised-button color="warn" mat-dialog-close="true">Cancelar</button>
+</mat-dialog-actions>
+<mat-dialog-content>
+    <p *ngIf="data?.eliminar">Estas seguro que deseas eliminar este registro?</p>
+</mat-dialog-content>
+<mat-dialog-actions *ngIf="data?.eliminar">
+    <button mat-raised-button (click)="delete(data._id)">Eliminar</button>
+    <button mat-raised-button color="warn" mat-dialog-close="true">Cancelar</button>
+</mat-dialog-actions>
